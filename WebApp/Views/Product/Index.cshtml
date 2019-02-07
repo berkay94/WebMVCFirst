@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<h2>Product View</h2>
+<button class="btn btn-primary">Tıkla</button>
+
+
+@{
+
+    System.Data.SqlClient.SqlConnection con = new System.Data.SqlClient.SqlConnection("Data Source=10.10.22.199;Initial Catalog=NORTHWND;User ID=test2;Password=test2");
+
+    con.Open();
+
+    System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand("Select * From Products", con);
+    System.Data.SqlClient.SqlDataReader rdr = cmd.ExecuteReader();
+
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity Per Unit</th>
+            <th>UnitPrice</th>
+            <th>UnitsInStock</th>
+            <th>UnitsOnOrder</th>
+        </tr>
+
+    </thead>
+    <tbody>
+
+        @while (rdr.Read())
+        {
+        <tr>
+            <td>@rdr[1].ToString()</td>
+            <td>@rdr[4].ToString()</td>
+            <td>@rdr[5].ToString()</td>
+            <td>@rdr[6].ToString()</td>
+            <td>@rdr[7].ToString()</td>
+        </tr>
+
+        }
+        
+    </tbody>
+            
+
+</table>
+    
+
+            
